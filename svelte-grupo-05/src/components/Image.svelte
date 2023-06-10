@@ -1,11 +1,12 @@
 <script>
   import ImageButton from "./ImageButton.svelte";
   let isHovered = true;
-  const image_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkMi5l0t8ZnHZcrF3e3rymOI_c8qUgb9oSSHa0UaN0&s"
+  export let imageUrl;
+
 </script>
 
 <div class="image-container">
-  <img class="logo" src={image_url} alt="logo" />
+  <img class="logo" src={imageUrl} alt="logo" />
   {#if isHovered}
     <div class="overlay">
       <div class="button-container">
@@ -17,13 +18,14 @@
 
 <style>
   .image-container {
-    position: relative;
     display: inline-block;
+    position: relative;
+    height: 15em;
+    margin: 0.5em;
   }
 
   .logo {
-    width: 300px;
-    height: auto;
+    height: 100%;
   }
 
   .overlay {
@@ -43,8 +45,6 @@
   }
 
   .button-container {
-
     z-index: 2;
-    
   }
 </style>
