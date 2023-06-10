@@ -26,18 +26,13 @@
 <style>
   .container {
     display: flex;
-    justify-content: space-between;
     align-self: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     overflow: auto;
     padding: 0;
   }
 </style>
-
-{#each images as image (image.id)}
-  <Image imageUrl={image.urls.regular} />
-{/each}
-
 
 <div class="container">
   {#each images as image (image.id)}

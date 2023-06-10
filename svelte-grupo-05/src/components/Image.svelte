@@ -6,7 +6,7 @@
 </script>
 
 <div class="image-container">
-  <img class="logo" src={imageUrl} alt="logo" />
+  <img class="img" src={imageUrl} alt="logo" />
   {#if isHovered}
     <div class="overlay">
       <div class="button-container">
@@ -24,7 +24,7 @@
     margin: 0.5em;
   }
 
-  .logo {
+  .img {
     height: 100%;
   }
 
