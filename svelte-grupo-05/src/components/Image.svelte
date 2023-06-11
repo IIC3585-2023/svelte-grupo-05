@@ -1,16 +1,20 @@
 <script>
   import ImageButton from "./ImageButton.svelte";
+  import { authStore } from "../stores/authStore";
+
   let isHovered = true;
   export let imageUrl;
+  export let image;
+  let isLogged = !!$authStore.token;
 
 </script>
 
 <div class="image-container">
   <img class="img" src={imageUrl} alt="logo" />
-  {#if isHovered}
+  {#if isHovered && isLogged}
     <div class="overlay">
       <div class="button-container">
-        <ImageButton />
+        <ImageButton image={image} />
       </div>
     </div>
   {/if}

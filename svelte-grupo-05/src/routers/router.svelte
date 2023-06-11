@@ -1,5 +1,5 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
   import Navbar from "../components/Navbar.svelte";
   import Feed from "../components/Feed.svelte";
   import Login from "../components/Login.svelte";
@@ -9,6 +9,7 @@
   import BoardImages from "../components/BoardImages.svelte";
 
   export let url = "/";
+
 </script>
 
 <Router {url}>
@@ -18,7 +19,9 @@
     <Route path="/login" component={Login} />
     <Route path="/register" component={Register} />
     <Route path="/users" component={Users} />
-    <Route path="/users/:userId/boards" component={Boards} />
+    <Route path="/users/:userId/boards" let:params>
+      <Boards userId="{params.userId}" />
+    </Route>
     <Route path="/boards/:boardId" component={BoardImages} />
   </div>
 </Router>

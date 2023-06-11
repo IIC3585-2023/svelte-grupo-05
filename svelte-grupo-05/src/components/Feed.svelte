@@ -36,6 +36,6 @@
 
 <div class="container">
   {#each images as image (image.id)}
-    <Image imageUrl={image.urls.regular} />
+    <Image imageUrl={image.urls.regular} image={image}/>
   {/each}
 </div>

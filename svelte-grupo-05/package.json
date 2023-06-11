@@ -14,9 +14,9 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@material-ui/icons": "^4.11.3",
-    "@smui/icon-button": "^7.0.0-beta.8",
-    "svelte-material-ui": "^7.0.0-beta.8",
-    "svelte-routing": "^1.10.0"
+    "jwt-decode": "^3.1.2",
+    "pocketbase": "^0.15.2",
+    "svelte-routing": "^1.10.0",
+    "sveltestrap": "^5.10.0"
   }
 }

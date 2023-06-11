@@ -1,41 +1,40 @@
-<script>
-  import { Link } from "svelte-routing";
-  import TopAppBar, {
-    Row,
-    Section,
-    Title,
-    AutoAdjust,
-  } from '@smui/top-app-bar';
-  import IconButton from '@smui/icon-button';
-  let topAppBar;
+<script lang="ts">
+  import { Link, navigate } from "svelte-routing";
+  import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Icon,
+    Button
+  } from 'sveltestrap';
+  import { authStore } from "../stores/authStore";
+
+  const handleLogout = () => {
+    $authStore.token = null;
+    $authStore.id = null;
+    $authStore.boards = [];
+    localStorage.removeItem("token");
+    localStorage.removeItem("boards");
+    navigate("/");
+  };
 </script>
 
-<TopAppBar class="nav" bind:this={topAppBar} variant="standard">
-  <Row>
-  <IconButton class="material-icons" aria-label="Download" href="/login"
-        >file_download</IconButton>
-  <Link to="/">Feed</Link>
-  <Link to="/login">Login</Link>
-  <Link to="/register">Register</Link>
-  <Link to="/users">Users</Link>
-  <Link to="/users/:userId/boards">Boards</Link>
-  <Link to="/boards/:boardId">Board Images</Link>
-  </Row>
-</TopAppBar>
-
-<!-- <nav> -->
-<!--   <Link to="/">Feed</Link> -->
-<!--   <Link to="/login">Login</Link> -->
-<!--   <Link to="/register">Register</Link> -->
-<!--   <Link to="/users">Users</Link> -->
-<!--   <Link to="/users/:userId/boards">Boards</Link> -->
-<!--   <Link to="/boards/:boardId">Board Images</Link> -->
-<!-- </nav> -->
-
-<style>
-.nav {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-</style>
+<Navbar color="light" light class="mb-3">
+  <Button on:click={()=>navigate("/")} class="me-auto rounded-circle"><Icon name='pinterest'/></Button>
+  <Nav class="ms-auto">
+  <div class="d-flex gap-2">
+    {#if !!$authStore.token}
+      <Button on:click={()=>navigate(`/users/${$authStore.id}/boards`)} class="me-auto rounded-circle"><Icon name='heart'/></Button>
+      <Button on:click={()=>navigate("/users")} class="me-auto rounded-circle"><Icon name='people'/></Button>
+      <Button on:click={handleLogout} class="me-auto rounded-circle"><Icon name='box-arrow-right'/></Button>
+    {:else}
+      <Button on:click={()=>navigate("/login")} class="me-auto">Login</Button>
+      <Button on:click={()=>navigate("/register")} class="me-auto">Register</Button>
+    {/if}
+  </div>
+  </Nav>
+</Navbar>
